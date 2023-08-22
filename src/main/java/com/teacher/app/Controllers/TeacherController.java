@@ -3,6 +3,7 @@ package com.teacher.app.Controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,6 +21,15 @@ import com.teacher.app.Service.TeacherService;
 @RestController
 @RequestMapping(value = "/teachers")
 public class TeacherController {
+	
+	@Value("${server.port}")
+	private String serverPort;
+	
+	@GetMapping("/get-server-port")
+	public String getServerPort() {
+		System.out.println(" My Server Port is "+ serverPort);
+		return "My Server port is = " + serverPort;
+	}
 	
 	@Autowired
 	private TeacherService teacherservice;
